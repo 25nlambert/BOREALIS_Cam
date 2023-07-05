@@ -1,0 +1,13 @@
+[Unit]
+Description=BOREALIS_Payload_Cam_Livestream_save_service 
+After=BOREALIS_CAM.service
+Type=simple
+
+[Service] 
+#ExecStart=/home/pi/BOREALIS_Cam/save_stream.sh
+ExecStop=/bin/kill -WINCH ${MAINPID}
+KillSignal=SIGINT
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
