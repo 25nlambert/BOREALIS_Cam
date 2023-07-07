@@ -16,9 +16,9 @@ if [[ "$input" = "Bitrate" ]] || [[  "$input" = "bitrate" ]]
 then
 	echo "Please entire new bitrate."
 	read input2
-	systemctl stop BOREALIS_CAM.service
-	sed -i "0,/BITRATE/s/BITRATE.*/BITRATE=${input2}/" start_stream
-	systemctl start BOREALIS_CAM.service
+	sudo systemctl stop BOREALIS_CAM.service
+	sudo sed -i "0,/BITRATE/s/BITRATE.*/BITRATE=${input2}/" start_stream
+	sudo systemctl start BOREALIS_CAM.service
 	echo "Changes made successfully, stream has been restarted with updated settings"
 fi
 
@@ -26,9 +26,9 @@ if [[ "$input" = "Height" ]] || [[  "$input" = "height" ]]
 then
 	echo "Please entire new height."
 	read input2
-	systemctl stop BOREALIS_CAM.service
-	sed -i "0,/HEIGHT/s/HEIGHT.*/HEIGHT=${input2}/" start_stream
-	systemctl start BOREALIS_CAM.service
+	sudo systemctl stop BOREALIS_CAM.service
+	sudo sed -i "0,/HEIGHT/s/HEIGHT.*/HEIGHT=${input2}/" start_stream
+	sudo systemctl start BOREALIS_CAM.service
 	echo "Changes made successfully, stream has been restarted with updated settings"
 fi
 
@@ -36,9 +36,9 @@ if [[ "$input" = "Width" ]] || [[  "$input" = "width" ]]
 then
 	echo "Please entire new width."
 	read input2
-	systemctl stop BOREALIS_CAM.service
-	sed -i "0,/WIDTH/s/WIDTH.*/WIDTH=${input2}/" start_stream
-	systemctl start BOREALIS_CAM.service
+	sudo systemctl stop BOREALIS_CAM.service
+	sudo sed -i "0,/WIDTH/s/WIDTH.*/WIDTH=${input2}/" start_stream
+	sudo systemctl start BOREALIS_CAM.service
 	echo "Changes made successfully, stream has been restarted with updated settings"
 fi
 
@@ -46,9 +46,9 @@ if [[ "$input" = "Framerate" ]] || [[  "$input" = "framerate" ]]
 then
 	echo "Please entire new framerate."
 	read input2
-	systemctl stop BOREALIS_CAM.service
-	sed -i "0,/FRAMERATE/s/FRAMERATE.*/FRAMERATE=${input2}/" start_stream
-	systemctl start BOREALIS_CAM.service
+	sudo systemctl stop BOREALIS_CAM.service
+	sudo sed -i "0,/FRAMERATE/s/FRAMERATE.*/FRAMERATE=${input2}/" start_stream
+	sudo systemctl start BOREALIS_CAM.service
 	echo "Changes made successfully, stream has been restarted with updated settings"
 fi
 
