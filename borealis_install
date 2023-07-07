@@ -3,8 +3,7 @@
 command1_output=$(wget -O install_pivariety_pkgs.sh https://github.com/ArduCAM/Arducam-Pivariety-V4L2-Driver/releases/download/install_script/install_pivariety_pkgs.sh)
 echo "$command1_output"
 
-command2_output=$(chmod +x install_pivariety_pkgs.sh)
-echo "$command2_output"
+sudo chmod +x install_pivariety_pkgs.sh
 
 command3_output=$(./install_pivariety_pkgs.sh -p libcamera_dev)
 echo "$command3_output"
@@ -18,27 +17,29 @@ echo "$command5_output"
 line_number=$(grep -n "camera_auto_detext" "/boot/config.txt" | cut -d ':' -f1)
 echo "Line Number Got"
 
-sed -i '0,/camera_auto_detect=1/s/camera_auto_detect=1.*/camera_auto_detect=0/' /boot/config.txt
+sudo sed -i '0,/camera_auto_detect=1/s/camera_auto_detect=1.*/camera_auto_detect=0'"\n"'dtoverlay=imx477/' /boot/config.txt
 echo "Changed to 0"
 
-sed -i "${line_number}a" "dtoverlay=imx477" /boot/config.txt
+#sudo sed -i "${line_number}a\" "dtoverlay=imx477" /boot/config.txt
 echo "Added IMX477"
 
-sed -i '0,/#interface eth0/s/#interface eth0.*/interface eth0/' /etc/dhcpcd.conf
+sudo sed -i '0,/#interface eth0/s/#interface eth0.*/interface eth0/' /etc/dhcpcd.conf
 echo "changed interface eth0"
 
-sed -i '0,/#static ip_address/s/#static ip_address.*/static ip_address=192.168.1.23/' /etc/dhcpcd.conf
+sudo sed -i '0,/#static ip_address/s/#static ip_address.*/static ip_address=192.168.1.23/' /etc/dhcpcd.conf
 echo "changed static ip_address"
 
 
 command7_output=$(sudo cp BOREALIS_Cam/BOREALIS_CAM.service /etc/systemd/system)
 echo "$command7_output"
 
-chmod +x BOREALIS_Cam/start_stream
+sudo chmod +x BOREALIS_Cam/start_stream
 
 sudo systemctl enable BOREALIS_CAM.service
 
-sudo systemctl start BOREALIS_CAM.service
+#sudo systemctl start BOREALIS_CAM.service
 
-command8_output=$(sudo systemctl status BOREALIS_CAM.service)
-echo "$command8_output"
+#command8_output=$(sudo systemctl status BOREALIS_CAM.service)
+#echo "$command8_output"
+
+sudo reboot
