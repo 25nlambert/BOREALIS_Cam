@@ -3,7 +3,7 @@ WIDTH=1550
 # Maximum is 1550!
 HEIGHT=1152
 # Maximum is 1152!
-BITRATE=4000000
+BITRATE=1200000
 #BITRATE  <-- when being edited, only the first instance of BITRATE should change, hence the one in this comment should NOT change
 FRAMERATE=30
 
