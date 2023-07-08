@@ -4,7 +4,7 @@ After=network.target
 Type=simple
 
 [Service] 
-#the line below is incorrect
+#the lines below is incorrect
 #ExecStart="home/pi/BOREALIS_Cam/test-launch libcamerasrc !  width 720 height 480 bitrate 1500000 framerate 15/1 ! h264parse ! rtph264pay name=pay0 pt=96"
 #ExecStart='/usr/local/bin/libcamera-vid --width 1280 --height 720 -g 15 -b 1200000 --vflip -t 0 --framerate 30 -n -o - |/home/pi/BOREALIS_Cam/test-launch "fdsrc fd=0 ! h264parse ! rtph264pay name=pay0 pt=96"'
 ExecStart=/home/pi/BOREALIS_Cam/start_stream

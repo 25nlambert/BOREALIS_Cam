@@ -1,34 +1,52 @@
 #!bin/bash
 
-command1_output=$(wget -O install_pivariety_pkgs.sh https://github.com/ArduCAM/Arducam-Pivariety-V4L2-Driver/releases/download/install_script/install_pivariety_pkgs.sh)
-echo "$command1_output"
+ip="192.168.1.23"
 
-sudo chmod +x install_pivariety_pkgs.sh
+while getopts ":ip:d:" option; do
+  case $option in
+    ip)
+      ip="$OPTARG"
+      ;;
+    reinstall)
+      reinstall=1
+      ;;
+    *)
+      echo "Usage: $0 [-f ip - Will set the static ip] [-reinstall - Will redownload lib-camera]"
+      exit 1
+      ;;
+  esac
+done
 
-command3_output=$(./install_pivariety_pkgs.sh -p libcamera_dev)
-echo "$command3_output"
+if [ ! -f "install_pivariety_pkgs.sh" ] || [ "$reinstall" -eq 1]; then
 
-command4_output=$(./install_pivariety_pkgs.sh -p libcamera_apps)
-echo "$command4_output"
+    command1_output=$(wget -O install_pivariety_pkgs.sh https://github.com/ArduCAM/Arducam-Pivariety-V4L2-Driver/releases/download/install_script/install_pivariety_pkgs.sh)
+    echo "$command1_output"
 
-command5_output=$(git clone https://github.com/25nlambert/BOREALIS_Cam.git)
+    sudo chmod +x install_pivariety_pkgs.sh
+
+    command3_output=$(./install_pivariety_pkgs.sh -p libcamera_dev)
+    echo "$command3_output"
+
+    command4_output=$(./install_pivariety_pkgs.sh -p libcamera_apps)
+    echo "$command4_output"
+
+fi
+
+command5_output=$(git clone --force https://github.com/25nlambert/BOREALIS_Cam.git)
 echo "$command5_output"
 
 line_number=$(grep -n "camera_auto_detext" "/boot/config.txt" | cut -d ':' -f1)
-echo "Line Number Got"
+echo "camera_auto_detect line found"
 
 sudo sed -i '0,/camera_auto_detect=1/s/camera_auto_detect=1.*/camera_auto_detect=0'"\n"'dtoverlay=imx477/' /boot/config.txt
-echo "Changed to 0"
-
-#sudo sed -i "${line_number}a\" "dtoverlay=imx477" /boot/config.txt
-echo "Added IMX477"
+echo "Turned off camera auto detection"
+echo "Added IMX477 Config"
 
 sudo sed -i '0,/#interface eth0/s/#interface eth0.*/interface eth0/' /etc/dhcpcd.conf
-echo "changed interface eth0"
+echo "Enabled interface eth0"
 
-sudo sed -i '0,/#static ip_address/s/#static ip_address.*/static ip_address=192.168.1.23/' /etc/dhcpcd.conf
-echo "changed static ip_address"
-
+sudo sed -i "0,/#static ip_address/s/#static ip_address.*/static ip_address=$ip/" /etc/dhcpcd.conf
+echo "Enabled and set static ip_address to $ip"
 
 command7_output=$(sudo cp BOREALIS_Cam/BOREALIS_CAM.service /etc/systemd/system)
 echo "$command7_output"
@@ -36,10 +54,5 @@ echo "$command7_output"
 sudo chmod +x BOREALIS_Cam/start_stream
 
 sudo systemctl enable BOREALIS_CAM.service
-
-#sudo systemctl start BOREALIS_CAM.service
-
-#command8_output=$(sudo systemctl status BOREALIS_CAM.service)
-#echo "$command8_output"
 
 sudo reboot
