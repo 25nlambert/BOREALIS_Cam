@@ -17,7 +17,7 @@ while getopts ":ip:d:" option; do
   esac
 done
 
-command5_output=$(git clone --force https://github.com/25nlambert/BOREALIS_Cam.git)
+command5_output=$(git clone https://github.com/25nlambert/BOREALIS_Cam.git)
 echo "$command5_output"
 
 line_number=$(grep -n "camera_auto_detext" "/boot/config.txt" | cut -d ':' -f1)
