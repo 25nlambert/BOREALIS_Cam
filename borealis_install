@@ -17,21 +17,6 @@ while getopts ":ip:d:" option; do
   esac
 done
 
-if [ ! -f "install_pivariety_pkgs.sh" ] || [ "$reinstall" -eq 1]; then
-
-    command1_output=$(wget -O install_pivariety_pkgs.sh https://github.com/ArduCAM/Arducam-Pivariety-V4L2-Driver/releases/download/install_script/install_pivariety_pkgs.sh)
-    echo "$command1_output"
-
-    sudo chmod +x install_pivariety_pkgs.sh
-
-    command3_output=$(./install_pivariety_pkgs.sh -p libcamera_dev)
-    echo "$command3_output"
-
-    command4_output=$(./install_pivariety_pkgs.sh -p libcamera_apps)
-    echo "$command4_output"
-
-fi
-
 command5_output=$(git clone --force https://github.com/25nlambert/BOREALIS_Cam.git)
 echo "$command5_output"
 
