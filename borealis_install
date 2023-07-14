@@ -1,20 +1,14 @@
 #!bin/bash
 
-ip="192.168.1.23"
+ip="192.168.2.23"
 
-while getopts ":ip:d:" option; do
-  case $option in
-    ip)
-      ip="$OPTARG"
-      ;;
-    reinstall)
-      reinstall=1
-      ;;
-    *)
-      echo "Usage: $0 [-f ip - Will set the static ip] [-reinstall - Will redownload lib-camera]"
-      exit 1
-      ;;
-  esac
+while getopts ip:help flag
+do
+    case "${flag}" in
+        ip) ip=${OPTARG};;
+        help) echo "Usage: $0 [-f ip - Will set the static ip] [-reinstall - Will redownload lib-camera]"
+           exit 1;;
+    esac
 done
 
 command5_output=$(git clone https://github.com/25nlambert/BOREALIS_Cam.git)
@@ -36,7 +30,12 @@ echo "Enabled and set static ip_address to $ip"
 command7_output=$(sudo cp BOREALIS_Cam/BOREALIS_CAM.service /etc/systemd/system)
 echo "$command7_output"
 
-sudo chmod +x BOREALIS_Cam/start_stream
+sudo chmod +x /home/pi/BOREALIS_Cam/start_stream
+sudo chmod +x /home/pi/BOREALIS_Cam/edit_stream
+
+sudo systemctl enable ssh
+
+sudo systemctl start ssh
 
 sudo systemctl enable BOREALIS_CAM.service
 

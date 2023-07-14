@@ -1,3 +1,5 @@
+#!bin/bash
+
 echo "Please enter the setting you want to change, or 'help' for a list of changable settings"
 read input
 while [ "$input" = "help" ]
@@ -12,7 +14,7 @@ do
 	read input
 done
 
-if [[ "$input" = "Bitrate" ]] || [[  "$input" = "bitrate" ]]
+if [[ "$input" = "Bitrate" ]] || [[  "$input" = "bitrate" ]] || [[  "$input" = "b" ]]
 then
 	echo "Please entire new bitrate."
 	read input2
@@ -22,7 +24,7 @@ then
 	echo "Changes made successfully, stream has been restarted with updated settings"
 fi
 
-if [[ "$input" = "Height" ]] || [[  "$input" = "height" ]]
+if [[ "$input" = "Height" ]] || [[  "$input" = "height" ]] || [[  "$input" = "h" ]]
 then
 	echo "Please entire new height."
 	read input2
@@ -32,7 +34,7 @@ then
 	echo "Changes made successfully, stream has been restarted with updated settings"
 fi
 
-if [[ "$input" = "Width" ]] || [[  "$input" = "width" ]]
+if [[ "$input" = "Width" ]] || [[  "$input" = "width" ]] || [[  "$input" = "w" ]]
 then
 	echo "Please entire new width."
 	read input2
@@ -42,7 +44,7 @@ then
 	echo "Changes made successfully, stream has been restarted with updated settings"
 fi
 
-if [[ "$input" = "Framerate" ]] || [[  "$input" = "framerate" ]]
+if [[ "$input" = "Framerate" ]] || [[  "$input" = "framerate" ]] || [[  "$input" = "f" ]]
 then
 	echo "Please entire new framerate."
 	read input2
