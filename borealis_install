@@ -14,34 +14,25 @@ done
 command5_output=$(git clone https://github.com/25nlambert/BOREALIS_Cam.git)
 echo "$command5_output"
 
-line_number=$(grep -n "camera_auto_detext" "/boot/config.txt" | cut -d ':' -f1)
-echo "camera_auto_detect line found"
+sudo cp BOREALIS_Cam/config.txt /boot/config.txt
 
-sudo sed -i '0,/camera_auto_detect=1/s/camera_auto_detect=1.*/camera_auto_detect=0'"\n"'dtoverlay=imx477/' /boot/config.txt
-echo "Turned off camera auto detection"
-echo "Added IMX477 Config"
+sudo cp BOREALIS_Cam/dhcpcd.conf /etc/dhcpcd.conf
 
-sudo sed -i '0,/#interface eth0/s/#interface eth0.*/interface eth0/' /etc/dhcpcd.conf
-echo "Enabled interface eth0"
+sudo cp BOREALIS_Cam/.bashrc /home/pi/.bashrc
 
-sudo sed -i "0,/#static ip_address/s/#static ip_address.*/static ip_address=$ip/" /etc/dhcpcd.conf
-echo "Enabled and set static ip_address to $ip"
-
-command7_output=$(sudo cp BOREALIS_Cam/BOREALIS_CAM.service /etc/systemd/system)
-echo "$command7_output"
+sudo cp BOREALIS_Cam/BOREALIS_CAM.service /etc/systemd/system
 
 sudo chmod +x /home/pi/BOREALIS_Cam/start_stream
 sudo chmod +x /home/pi/BOREALIS_Cam/edit_stream
 
-sudo systemctl enable ssh
-
+sudo systemctl enable ssh #Enable SSH
 sudo systemctl start ssh
 
-sudo systemctl stop cups.service cups-browsed.service bluetooth.service hciuart.service #turn off unnessicary services
+sudo systemctl stop cups.service cups-browsed.service bluetooth.service hciuart.service #turn off unnecessary services
 sudo systemctl disable cups.service cups-browsed.service bluetooth.service hciuart.service
 sudo systemctl mask bluetooth.service hciuart.service
 
-sudo apt purge avahi-daemon pipewire pipwire-bin modemmanager packagekit libnss-mdns #deleting unnessicary processes
+sudo apt purge avahi-daemon pipewire pipwire-bin modemmanager packagekit libnss-mdns #deleting unnecessary processes
 
 sudo systemctl enable BOREALIS_CAM.service
 
