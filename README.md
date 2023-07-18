@@ -2,7 +2,7 @@
 
 This repository contains the files necessary for installing, configuring, and running the Raspberry Pi live video payload for Maine's NEBP team.
 
-To install, format a micro SD card with the latest version of Raspberry Pi OS (32 Bit) using the Raspberry Pi Imager.
+To install, format a micro SD card with the latest version of Raspberry Pi OS (64 Bit) using the Raspberry Pi Imager.
 
 Connect a keyboard, mouse, and monitor to your Pi. Turn on your Pi and run through the initial setup steps until you reach the Desktop. Connect to the Pi to the internet.
 
