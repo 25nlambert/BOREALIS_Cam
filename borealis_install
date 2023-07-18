@@ -14,18 +14,18 @@ done
 command5_output=$(git clone https://github.com/25nlambert/BOREALIS_Cam.git)
 echo "$command5_output"
 
-#line_number=$(grep -n "camera_auto_detext" "/boot/config.txt" | cut -d ':' -f1)
-#echo "camera_auto_detect line found"
+line_number=$(grep -n "camera_auto_detext" "/boot/config.txt" | cut -d ':' -f1)
+echo "camera_auto_detect line found"
 
-#sudo sed -i '0,/camera_auto_detect=1/s/camera_auto_detect=1.*/camera_auto_detect=0'"\n"'dtoverlay=imx477/' /boot/config.txt
-#echo "Turned off camera auto detection"
-#echo "Added IMX477 Config"
+sudo sed -i '0,/camera_auto_detect=1/s/camera_auto_detect=1.*/camera_auto_detect=0'"\n"'dtoverlay=imx477/' /boot/config.txt
+echo "Turned off camera auto detection"
+echo "Added IMX477 Config"
 
-#sudo sed -i '0,/#interface eth0/s/#interface eth0.*/interface eth0/' /etc/dhcpcd.conf
-#echo "Enabled interface eth0"
+sudo sed -i '0,/#interface eth0/s/#interface eth0.*/interface eth0/' /etc/dhcpcd.conf
+echo "Enabled interface eth0"
 
-#sudo sed -i "0,/#static ip_address/s/#static ip_address.*/static ip_address=$ip/" /etc/dhcpcd.conf
-#echo "Enabled and set static ip_address to $ip"
+sudo sed -i "0,/#static ip_address/s/#static ip_address.*/static ip_address=$ip/" /etc/dhcpcd.conf
+echo "Enabled and set static ip_address to $ip"
 
 command7_output=$(sudo cp BOREALIS_Cam/BOREALIS_CAM.service /etc/systemd/system)
 echo "$command7_output"
