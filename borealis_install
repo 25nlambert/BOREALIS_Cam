@@ -8,12 +8,12 @@ read ip
 
 if [[ "$mac" = "" ]]
 then
-	mac=""
+	mac="ENTER GS LT MAC ADDRESS HERE"
 fi
 
 if [[ "$ip" = "" ]]
 then
-	ip="192.168.2.23"
+	ip="ENTER GS LT IP ADDRESS HERE"
 fi
 
 #Install modified libcamera
