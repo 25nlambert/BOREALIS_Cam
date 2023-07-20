@@ -4,6 +4,8 @@ sudo apt update
 
 sudo apt upgrade
 
+sudo dpkg -i libcamera0_0~git20230707+2783c8d8-1_arm64.deb
+
 echo "Please enter the MAC address of your ground station laptop"
 read mac
 
