@@ -4,6 +4,9 @@ sudo apt update
 
 sudo apt upgrade
 
+command5_output=$(git clone https://github.com/25nlambert/BOREALIS_Cam.git)
+echo "$command5_output"
+
 sudo dpkg -i libcamera0_0~git20230707+2783c8d8-1_arm64.deb
 
 echo "Please enter the MAC address of your ground station laptop"
@@ -38,9 +41,6 @@ sudo apt install vim vim-runtime vim-common #Install Vim because we can
 sudo apt install tcpdump #So I can take a network dump
 
 sudo arp -S $ip $mac #Set ARP mac address for ground laptop
-
-command5_output=$(git clone https://github.com/25nlambert/BOREALIS_Cam.git)
-echo "$command5_output"
 
 sudo cp BOREALIS_Cam/config.txt /boot/config.txt #Replace config file with camera one
 
