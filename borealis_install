@@ -8,12 +8,12 @@ read ip
 
 if [[ "$mac" = "" ]]
 then
-	mac="ENTER GS LT MAC ADDRESS HERE"
+	mac="8c:0f:6f:6f:dc:e2"
 fi
 
 if [[ "$ip" = "" ]]
 then
-	ip="ENTER GS LT IP ADDRESS HERE"
+	ip="192.168.2.23"
 fi
 
 #Install modified libcamera
@@ -27,7 +27,7 @@ sudo systemctl mask bluetooth.service hciuart.service
 
 sudo apt purge avahi-daemon pipewire pipwire-bin modemmanager packagekit libnss-mdns #Delete unnecessary processes
 
-#sudo apt install vim vim-runtime vim-common #Install Vim because we can
+sudo apt install vim vim-runtime vim-common #Install Vim because we can
 
 sudo apt install tcpdump #So I can take a network dump
 
