@@ -1,5 +1,11 @@
 #!bin/bash
 
+echo "Please enter the MAC address of your ground station laptop xx:xx:xx:xx:xx:xx"
+read mac
+
+echo "Please enter the IP address of your ground station laptop xx:xx:xx:xx"
+read ip
+
 sudo apt update
 
 sudo apt upgrade
@@ -7,13 +13,7 @@ sudo apt upgrade
 command5_output=$(git clone https://github.com/25nlambert/BOREALIS_Cam.git)
 echo "$command5_output"
 
-sudo dpkg -i libcamera0_0~git20230707+2783c8d8-1_arm64.deb #Install modified libcamera
-
-echo "Please enter the MAC address of your ground station laptop xx:xx:xx:xx:xx:xx"
-read mac
-
-echo "Please enter the IP address of your ground station laptop xx:xx:xx:xx"
-read ip
+sudo dpkg -i /BOREALIS_Cam/libcamera0_0~git20230707+2783c8d8-1_arm64.deb #Install modified libcamera
 
 if [[ "$mac" = "" ]]
 then
@@ -52,5 +52,7 @@ sudo chmod +x /home/pi/BOREALIS_Cam/start_stream
 sudo chmod +x /home/pi/BOREALIS_Cam/edit_stream
 
 sudo systemctl enable BOREALIS_CAM.service
+
+sudo apt autoremove
 
 sudo reboot
