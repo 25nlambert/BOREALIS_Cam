@@ -7,7 +7,7 @@ sudo apt upgrade
 command5_output=$(git clone https://github.com/25nlambert/BOREALIS_Cam.git)
 echo "$command5_output"
 
-sudo dpkg -i libcamera0_0~git20230707+2783c8d8-1_arm64.deb
+sudo dpkg -i libcamera0_0~git20230707+2783c8d8-1_arm64.deb #Install modified libcamera
 
 echo "Please enter the MAC address of your ground station laptop"
 read mac
@@ -25,7 +25,7 @@ then
 	ip="192.168.2.23"
 fi
 
-#Install modified libcamera
+sudo arp -S $ip $mac #Set ARP mac address for ground laptop
 
 sudo systemctl enable ssh #Enable SSH
 sudo systemctl start ssh
@@ -39,8 +39,6 @@ sudo apt purge avahi-daemon pipewire pipwire-bin modemmanager packagekit libnss-
 sudo apt install vim vim-runtime vim-common #Install Vim because we can
 
 sudo apt install tcpdump #So I can take a network dump
-
-sudo arp -S $ip $mac #Set ARP mac address for ground laptop
 
 sudo cp BOREALIS_Cam/config.txt /boot/config.txt #Replace config file with camera one
 
