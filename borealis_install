@@ -1,8 +1,8 @@
 #!bin/bash
 
-read -p "Please enter the MAC address of your ground station laptop xx:xx:xx:xx:xx:xx" mac
+read -p "Please enter the MAC address of your ground station laptop xx:xx:xx:xx:xx:xx\n" mac
 
-read -p "Please enter the IP address of your ground station laptop xx:xx:xx:xx" ip
+read -p "Please enter the IP address of your ground station laptop xx:xx:xx:xx\n" ip
 
 sudo apt update
 
@@ -34,9 +34,9 @@ sudo systemctl mask bluetooth.service hciuart.service
 
 sudo apt purge avahi-daemon modemmanager pipwire-bin packagekit pipewire libnss-mdns cups cups-browsed #Delete unnecessary processes
 
-sudo apt install vim vim-runtime vim-common #Install Vim because we can
+sudo apt install -y vim vim-runtime vim-common #Install Vim because we can
 
-sudo apt install tcpdump #So I can take a network dump
+sudo apt install -y tcpdump #So I can take a network dump
 
 sudo cp BOREALIS_Cam/config.txt /boot/config.txt #Replace config file with camera one
 
