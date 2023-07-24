@@ -1,8 +1,8 @@
 #!bin/bash
 
-read -p "Please enter the MAC address of your ground station laptop xx:xx:xx:xx:xx:xx\n" mac
+read -p -e "Please enter the MAC address of your ground station laptop xx:xx:xx:xx:xx:xx\n" mac
 
-read -p "Please enter the IP address of your ground station laptop xx:xx:xx:xx\n" ip
+read -p -e "Please enter the IP address of your ground station laptop xx:xx:xx:xx\n" ip
 
 sudo apt update
 
