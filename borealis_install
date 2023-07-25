@@ -8,7 +8,7 @@ read ip
 
 sudo apt update
 
-sudo apt -y full-upgrade
+sudo apt -y upgrade
 
 command5_output=$(git clone https://github.com/25nlambert/BOREALIS_Cam.git)
 echo "$command5_output"
