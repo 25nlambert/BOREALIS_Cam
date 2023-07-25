@@ -15,15 +15,15 @@ echo "$command5_output"
 
 sudo dpkg -i /BOREALIS_Cam/libcamera0_0~git20230707+2783c8d8-1_arm64.deb #Install modified libcamera
 
-if [[ "$mac" = "" ]]
-then
+#if [[ "$mac" = "" ]]
+#then
 #	mac="8c:0f:6f:6f:dc:e2"
-fi
+#fi
 
-if [[ "$ip" = "" ]]
-then
+#if [[ "$ip" = "" ]]
+#then
 #	ip="192.168.2.23"
-fi
+#fi
 
 sudo arp -S $ip $mac #Set ARP mac address for ground laptop
 
