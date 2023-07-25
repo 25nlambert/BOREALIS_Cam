@@ -6,9 +6,9 @@ read mac
 echo -e "Please enter the IP address of your ground station laptop xx:xx:xx:xx\n"
 read ip
 
-sudo apt-get update
+sudo apt update
 
-sudo apt-get -y upgrade
+sudo apt -y full-upgrade
 
 command5_output=$(git clone https://github.com/25nlambert/BOREALIS_Cam.git)
 echo "$command5_output"
