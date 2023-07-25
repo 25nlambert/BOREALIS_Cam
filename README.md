@@ -8,9 +8,9 @@ Connect a keyboard, mouse, and monitor to your Pi. Turn on your Pi and run throu
 
 Open a terminal instance using the black box at the top left of your screen and type in the following command:
 
-sudo curl -SL https://shorturl.at/jtyIM | bash
+bash <(sudo curl -SL https://shorturl.at/jtyIM)
 
-This will automatically download and configure LibCamera for the Arducam 12MP MINI IMX477 Synchronized Stereo Camera Bundle Kit for Raspberry Pi. 
+This will automatically configure LibCamera for the Arducam 12MP MINI IMX477 Synchronized Stereo Camera Bundle Kit for Raspberry Pi. 
 
 Next, it will configure the static IP address of the eth0 network interface.
 
@@ -21,4 +21,4 @@ The Pi will reboot once everything is downloaded and configured. Now there shoul
 The video is recommended to be viewed using FFMPEG on an installation of Linux. 
 In a terminal use the following command:
 
-ffplay -fflags nobugger udp://192.168.1.23:8554
+ffplay -fflags nobugger udp://192.168.2.23:8554
