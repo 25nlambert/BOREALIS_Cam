@@ -53,6 +53,6 @@ sudo chmod +x /home/pi/BOREALIS_Cam/edit_stream
 
 sudo systemctl enable BOREALIS_CAM.service
 
-sudo apt autoremove
+sudo apt autoremove -y
 
 sudo reboot
