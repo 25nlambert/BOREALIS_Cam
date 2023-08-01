@@ -60,7 +60,7 @@ sudo apt install -y tcpdump #So I can take a network dump
 sudo cp BOREALIS_Cam/config.txt /boot/config.txt #Replace config file with camera one
 
 #Finding and replacing to get on correct subnet
-third_octet=$(echo "$ip" | awk -F "." '{print $3}') #Find third_octet for subnet
+third_octet=$(echo "$IP" | awk -F "." '{print $3}') #Find third_octet for subnet
 cp BOREALIS_Cam/dhcpcd.conf BOREALIS_Cam/dhcpcd.conf.modify #Create duplicate to modify
 sed "s/XX.XX.XX.XX/192.168.$third_octet.23/" <./BOREALIS_Cam/dhcpcd.conf.modify >./BOREALIS_Cam/dhcpcd.conf.modified #modify duplicate
 sudo cp BOREALIS_Cam/dhcpcd.conf.modified /etc/dhcpcd.conf 								#Replace dhcp file with working one for static IP
@@ -68,7 +68,7 @@ rm ./BOREALIS_Cam/dhcpcd.conf.modify ./BOREALIS_Cam/dhcpcd.conf.modified				#rem
 
 #Modify start_stream with correct IP
 cp BOREALIS_Cam/start_stream BOREALIS_Cam/start_stream.modify #Create duplicate to modify
-sed "s/XX.XX.XX.XX/$ip/" <./BOREALIS_Cam/start_stream.modify >./BOREALIS_Cam/start_stream.modified #modify duplicate
+sed "s/XX.XX.XX.XX/$IP/" <./BOREALIS_Cam/start_stream.modify >./BOREALIS_Cam/start_stream.modified #modify duplicate
 sudo cp BOREALIS_Cam/start_stream.modified BOREALIS_Cam/start_stream 								#Replace start_stream file with working one for static IP
 rm ./BOREALIS_Cam/start_stream.modify ./BOREALIS_Cam/start_stream.modified				#remove duplicates
 
