@@ -7,7 +7,7 @@ NC='\033[0m'
 #Prompts for and checks for proper MAC address
 while true; do
 
-	echo -e " \n\n\n"
+	echo -e " \n"
 	echo -e "\n\n\nPlease enter the MAC address of your ground station laptop\nin the form XX:XX:XX:XX:XX:XX(Colon Separated)\n"
 	read MAC
     if [[ $MAC =~ ^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$ ]]; then
@@ -30,7 +30,7 @@ while true; do
     else 
         echo -e "\n${RED}IP Incorrect(Incorrect Form or Values)${NC}"
     fi
-	
+
 done
 
 sudo apt update
