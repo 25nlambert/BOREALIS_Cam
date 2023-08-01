@@ -65,7 +65,7 @@ rm ./BOREALIS_Cam/dhcpcd.conf.modify ./BOREALIS_Cam/dhcpcd.conf.modified				#rem
 
 #Modify start_stream with correct IP
 cp BOREALIS_Cam/start_stream BOREALIS_Cam/start_stream.modify #Create duplicate to modify
-sed "s/XX.XX.XX.XX/192.168.$third_octet.49/" <./BOREALIS_Cam/start_stream.modify >./BOREALIS_Cam/start_stream.modified #modify duplicate
+sed "s/XX.XX.XX.XX/$ip/" <./BOREALIS_Cam/start_stream.modify >./BOREALIS_Cam/start_stream.modified #modify duplicate
 sudo cp BOREALIS_Cam/start_stream.modified BOREALIS_Cam/start_stream 								#Replace start_stream file with working one for static IP
 rm ./BOREALIS_Cam/start_stream.modify ./BOREALIS_Cam/start_stream.modified				#remove duplicates
 
