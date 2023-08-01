@@ -63,7 +63,7 @@ sudo cp BOREALIS_Cam/config.txt /boot/config.txt #Replace config file with camer
 third_octet=$(echo "$IP" | awk -F "." '{print $3}') #Find third_octet for subnet
 cp BOREALIS_Cam/dhcpcd.conf BOREALIS_Cam/dhcpcd.conf.modify #Create duplicate to modify
 sed "s/XX.XX.XX.XX/192.168.$third_octet.23/" <./BOREALIS_Cam/dhcpcd.conf.modify >./BOREALIS_Cam/dhcpcd.conf.modified #modify duplicate
-sudo cp BOREALIS_Cam/dhcpcd.conf.modified /etc/dhcpcd.conf 								#Replace dhcp file with working one for static IP
+sudo cp ./BOREALIS_Cam/dhcpcd.conf.modified /etc/dhcpcd.conf 								#Replace dhcp file with working one for static IP
 rm ./BOREALIS_Cam/dhcpcd.conf.modify ./BOREALIS_Cam/dhcpcd.conf.modified				#remove duplicates
 
 #Modify start_stream with correct IP
