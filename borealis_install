@@ -72,12 +72,12 @@ sed "s/XX.XX.XX.XX/$IP/" <./BOREALIS_Cam/start_stream.modify >./BOREALIS_Cam/sta
 sudo cp BOREALIS_Cam/start_stream.modified BOREALIS_Cam/start_stream 								#Replace start_stream file with working one for static IP
 rm ./BOREALIS_Cam/start_stream.modify ./BOREALIS_Cam/start_stream.modified				#remove duplicates
 
-sudo cp BOREALIS_Cam/.bashrc /home/pi/.bashrc #Replace shell config
+sudo cp BOREALIS_Cam/.bashrc /home/$USER/.bashrc #Replace shell config
 
 sudo cp BOREALIS_Cam/BOREALIS_CAM.service /etc/systemd/system #Copy service file
 
-sudo chmod +x /home/pi/BOREALIS_Cam/start_stream
-sudo chmod +x /home/pi/BOREALIS_Cam/edit_stream
+sudo chmod +x /home/$USER/BOREALIS_Cam/start_stream
+sudo chmod +x /home/$USER/BOREALIS_Cam/edit_stream
 
 sudo systemctl enable BOREALIS_CAM.service
 
