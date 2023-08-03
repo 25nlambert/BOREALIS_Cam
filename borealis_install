@@ -46,7 +46,7 @@ echo "$command5_output"
 
 sudo dpkg -i BOREALIS_Cam/libcamera0_0~git20230707+2783c8d8-1_arm64.deb #Install modified libcamera
 
-sudo arp -S $ip $mac #Set ARP mac address for ground laptop
+sudo arp -s $ip $mac #Set ARP mac address for ground laptop
 
 sudo systemctl enable ssh #Enable SSH
 sudo systemctl start ssh
