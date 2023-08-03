@@ -4,14 +4,18 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
+sudo rm -rf BOREALIS_Cam
+sudo systemctl stop BOREALIS_CAM.service
+sudo rm /etc/systemd/system/BOREALIS_CAM.service
+
 #Prompts for and checks for proper MAC address
 while true; do
 
 	echo -e " \n"
 	echo -e "\n\n\nPlease enter the MAC address of your ground station laptop\nin the form XX:XX:XX:XX:XX:XX(Colon Separated)\n"
-	read MAC
-    if [[ $MAC =~ ^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$ ]]; then
-    	echo -e "${GREEN}Valid MAC address: $MAC${NC}"
+	read mac
+    if [[ $mac =~ ^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$ ]]; then
+    	echo -e "${GREEN}Valid MAC address: $mac${NC}"
     	break;
     else
         echo -e "\n${RED}Invalid MAC address (Incorrect Form or Values)${NC}"
@@ -23,9 +27,9 @@ done
 while true; do
 
     echo -e "\nPlease enter the IP address of your ground station laptop\nin the form XXX.XXX.XXX.XXX(Period Separated)\n"
-    read IP
-    if [[ $IP =~ ^([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$ ]]; then
-    	echo -e "${GREEN}IP Correct: $IP${NC}"
+    read ip
+    if [[ $ip =~ ^([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$ ]]; then
+    	echo -e "${GREEN}IP Correct: $ip${NC}"
         break;
     else 
         echo -e "\n${RED}IP Incorrect(Incorrect Form or Values)${NC}"
@@ -42,7 +46,7 @@ echo "$command5_output"
 
 sudo dpkg -i BOREALIS_Cam/libcamera0_0~git20230707+2783c8d8-1_arm64.deb #Install modified libcamera
 
-sudo arp -S $IP $MAC #Set ARP mac address for ground laptop
+sudo arp -S $ip $mac #Set ARP mac address for ground laptop
 
 sudo systemctl enable ssh #Enable SSH
 sudo systemctl start ssh
@@ -60,7 +64,7 @@ sudo apt install -y tcpdump #So I can take a network dump
 sudo cp BOREALIS_Cam/config.txt /boot/config.txt #Replace config file with camera one
 
 #Finding and replacing to get on correct subnet
-third_octet=$(echo "$IP" | awk -F "." '{print $3}') #Find third_octet for subnet
+third_octet=$(echo "$ip" | awk -F "." '{print $3}') #Find third_octet for subnet
 cp ./BOREALIS_Cam/dhcpcd.conf ./BOREALIS_Cam/dhcpcd.conf.modify #Create duplicate to modify
 sed "s/XX.XX.XX.XX/192.168.$third_octet.23/" <./BOREALIS_Cam/dhcpcd.conf.modify >./BOREALIS_Cam/dhcpcd.conf.modified #modify duplicate
 sudo cp ./BOREALIS_Cam/dhcpcd.conf.modified /etc/dhcpcd.conf 								#Replace dhcp file with working one for static IP
@@ -68,7 +72,7 @@ rm ./BOREALIS_Cam/dhcpcd.conf.modify ./BOREALIS_Cam/dhcpcd.conf.modified				#rem
 
 #Modify start_stream with correct IP
 cp BOREALIS_Cam/start_stream BOREALIS_Cam/start_stream.modify #Create duplicate to modify
-sed "s/XX.XX.XX.XX/$IP/" <./BOREALIS_Cam/start_stream.modify >./BOREALIS_Cam/start_stream.modified #modify duplicate
+sed "s/XX.XX.XX.XX/$ip/" <./BOREALIS_Cam/start_stream.modify >./BOREALIS_Cam/start_stream.modified #modify duplicate
 sudo cp BOREALIS_Cam/start_stream.modified BOREALIS_Cam/start_stream 								#Replace start_stream file with working one for static IP
 rm ./BOREALIS_Cam/start_stream.modify ./BOREALIS_Cam/start_stream.modified				#remove duplicates
 
