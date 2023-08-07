@@ -4,8 +4,8 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-sudo rm -rf BOREALIS_Cam
 sudo systemctl stop BOREALIS_CAM.service
+sudo rm -rf BOREALIS_Cam
 sudo rm /etc/systemd/system/BOREALIS_CAM.service
 
 #Prompts for and checks for proper MAC address
@@ -37,16 +37,17 @@ while true; do
 
 done
 
+third_octet=$(echo "$ip" | awk -F "." '{print $3}') #Find third_octet for subnet
+
 sudo apt update
 
 sudo apt -y upgrade
 
-command5_output=$(git clone https://github.com/25nlambert/BOREALIS_Cam.git)
-echo "$command5_output"
+git clone https://github.com/25nlambert/BOREALIS_Cam.git
 
 sudo dpkg -i BOREALIS_Cam/libcamera0_0~git20230707+2783c8d8-1_arm64.deb #Install modified libcamera
 
-sudo arp -s $ip $mac #Set ARP mac address for ground laptop
+#sudo arp -s $ip $mac #Set ARP mac address for ground laptop
 
 sudo systemctl enable ssh #Enable SSH
 sudo systemctl start ssh
@@ -63,8 +64,7 @@ sudo apt install -y tcpdump #So I can take a network dump
 
 sudo cp BOREALIS_Cam/config.txt /boot/config.txt #Replace config file with camera one
 
-#Finding and replacing to get on correct subnet
-third_octet=$(echo "$ip" | awk -F "." '{print $3}') #Find third_octet for subnet
+#Replacing third octet to get on correct subnet
 cp ./BOREALIS_Cam/dhcpcd.conf ./BOREALIS_Cam/dhcpcd.conf.modify #Create duplicate to modify
 sed "s/XX.XX.XX.XX/192.168.$third_octet.23/" <./BOREALIS_Cam/dhcpcd.conf.modify >./BOREALIS_Cam/dhcpcd.conf.modified #modify duplicate
 sudo cp ./BOREALIS_Cam/dhcpcd.conf.modified /etc/dhcpcd.conf 								#Replace dhcp file with working one for static IP
