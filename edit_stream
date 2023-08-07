@@ -1,14 +1,16 @@
 #!bin/bash
 
+source config.conf
+
 echo "Please enter the setting you want to change, or 'help' for a list of changable settings"
 read input
 while [ "$input" = "help" ]
 do
 	echo "Changable settings are as follows:"
-	echo "Bitrate"
-	echo "Framerate"
-	echo "Height"
-	echo "Width"
+	echo "Bitrate, bitrate, b"
+	echo "Framerate, framerate, f"
+	echo "Height, height, h"
+	echo "Width, width, w"
 	echo ""
 	echo "Please enter the setting you want to change, or 'help' for a list of changable settings"
 	read input
@@ -19,7 +21,8 @@ then
 	echo "Please entire new bitrate."
 	read input2
 	sudo systemctl stop BOREALIS_CAM.service
-	sudo sed -i "0,/BITRATE/s/BITRATE.*/BITRATE=${input2}/" start_stream
+	sed -i "s/$BITRATE/$input2/" config.conf
+	#sudo sed -i "0,/BITRATE/s/BITRATE.*/BITRATE=${input2}/" start_stream
 	sudo systemctl start BOREALIS_CAM.service
 	echo "Changes made successfully, stream has been restarted with updated settings"
 fi
@@ -29,7 +32,8 @@ then
 	echo "Please entire new height."
 	read input2
 	sudo systemctl stop BOREALIS_CAM.service
-	sudo sed -i "0,/HEIGHT/s/HEIGHT.*/HEIGHT=${input2}/" start_stream
+	sed -i "s/$HEIGHT/$input2/" config.conf
+	#sudo sed -i "0,/HEIGHT/s/HEIGHT.*/HEIGHT=${input2}/" start_stream
 	sudo systemctl start BOREALIS_CAM.service
 	echo "Changes made successfully, stream has been restarted with updated settings"
 fi
@@ -39,7 +43,8 @@ then
 	echo "Please entire new width."
 	read input2
 	sudo systemctl stop BOREALIS_CAM.service
-	sudo sed -i "0,/WIDTH/s/WIDTH.*/WIDTH=${input2}/" start_stream
+	sed -i "s/$WIDTH/$input2/" config.conf
+	#sudo sed -i "0,/WIDTH/s/WIDTH.*/WIDTH=${input2}/" start_stream
 	sudo systemctl start BOREALIS_CAM.service
 	echo "Changes made successfully, stream has been restarted with updated settings"
 fi
@@ -49,7 +54,8 @@ then
 	echo "Please entire new framerate."
 	read input2
 	sudo systemctl stop BOREALIS_CAM.service
-	sudo sed -i "0,/FRAMERATE/s/FRAMERATE.*/FRAMERATE=${input2}/" start_stream
+	sed -i "s/$FRAMERATE/$input2/" config.conf
+	#sudo sed -i "0,/FRAMERATE/s/FRAMERATE.*/FRAMERATE=${input2}/" start_stream
 	sudo systemctl start BOREALIS_CAM.service
 	echo "Changes made successfully, stream has been restarted with updated settings"
 fi
