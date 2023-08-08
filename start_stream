@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source BOREALIS_Cam/config.conf #Pull in config values from file
+source /home/$USER/BOREALIS_Cam/config.conf #Pull in config values from file
 
 sudo arp -s $ip $mac #Set ARP mac address for ground laptop
 

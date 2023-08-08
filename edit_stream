@@ -1,6 +1,6 @@
 #!bin/bash
 
-source config.conf
+source /home/$USER/BOREALIS_Cam/config.conf #Pull in config values from file
 
 echo "Please enter the setting you want to change, or 'help' for a list of changable settings"
 read input
