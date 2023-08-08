@@ -42,19 +42,19 @@ sudo apt -y upgrade
 
 git clone https://github.com/25nlambert/BOREALIS_Cam.git #Clone git repository of files
 
-source config.conf #Reload config
+source BOREALIS_Cam/config.conf #Reload config
 
-sed -i "s/$ip/$ip_in/" config.conf #Saves to config
-sed -i "s/$mac/$mac_in/" config.conf #Saves to config
+sed -i "s/$ip/$ip_in/" BOREALIS_Cam/config.conf #Saves to config
+sed -i "s/$mac/$mac_in/" BOREALIS_Cam/config.conf #Saves to config
 
 find_third_octet=$(echo "$ip_in" | awk -F "." '{print $3}') #Find third_octet for subnet
-line_with_third_octet=$(grep "^third_octet" config.conf)
-sed -i "s/$line_with_third_octet/third_octet=$find_third_octet/" config.conf #Saves to config
+line_with_third_octet=$(grep "^third_octet" BOREALIS_Cam/config.conf)
+sed -i "s/$line_with_third_octet/third_octet=$find_third_octet/" BOREALIS_Cam/config.conf #Saves to config
 
 install_date="#install_date=$(date)" #Takes note of the time of installation
-sed -i "2c$install_date" config.conf
+sed -i "2c$install_date" BOREALIS_Cam/config.conf
 
-source config.conf #Reload config
+source BOREALIS_Cam/config.conf #Reload config
 
 sudo dpkg -i BOREALIS_Cam/libcamera0_0~git20230707+2783c8d8-1_arm64.deb #Install modified libcamera
 
