@@ -81,7 +81,7 @@ sudo cp BOREALIS_Cam/.bashrc /home/$USER/.bashrc #Replace shell config
 
 #Modify service with correct directory
 sed -i "s/pi/$USER/" BOREALIS_Cam/BOREALIS_CAM.service
-sed -i "s/pi/$USER/" BOREALIS_Cam/start_stream
+sed -i "s/pi/$USER/g" BOREALIS_Cam/start_stream
 
 sudo cp BOREALIS_Cam/BOREALIS_CAM.service /etc/systemd/system #Copy service file
 
