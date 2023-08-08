@@ -2,8 +2,6 @@
 
 source /home/$USER/BOREALIS_Cam/config.conf #Pull in config values from file
 
-echo "$ip"
-
 sudo arp -s $ip $mac #Set ARP mac address for ground laptop
 
 /usr/bin/libcamera-vid --width $WIDTH --height $HEIGHT -g 15 -b $BITRATE --vflip -t 0 --framerate $FRAMERATE -n -o - | /usr/bin/ffmpeg -r $FRAMERATE -f h264 -i - -fflags +genpts -an -vcodec copy -metadata service_name="2024 Eclipse HAB 1" -metadata service_provider=UMHAB -r $FRAMERATE -f rtp_mpegts rtp://$ip:8554?localaddr=$ip\&ttl=2/ -vcodec copy -f mpegts /home/$USER/Desktop/Videos`date '+%Y%m%d-%H%m%S.%N'`.mpegts
