@@ -92,4 +92,4 @@ sudo systemctl enable BOREALIS_CAM.service
 
 sudo apt autoremove -y
 
-sudo reboot
+#sudo reboot
