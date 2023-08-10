@@ -21,8 +21,8 @@ then
 	echo "Please entire new bitrate."
 	read input2
 	sudo systemctl stop BOREALIS_CAM.service
-	line_to_change=$(grep "^BITRATE" config.conf)
-	sed -i "s/$line_to_change/BITRATE=$input2/" config.conf
+	line_to_change=$(grep "^BITRATE" BOREALIS_Cam/config.conf)
+	sed -i "s/$line_to_change/BITRATE=$input2/" BOREALIS_Cam/config.conf
 	#sudo sed -i "0,/BITRATE/s/BITRATE.*/BITRATE=${input2}/" start_stream
 	sudo systemctl start BOREALIS_CAM.service
 	echo "Changes made successfully, stream has been restarted with updated settings"
@@ -33,8 +33,8 @@ then
 	echo "Please entire new height."
 	read input2
 	sudo systemctl stop BOREALIS_CAM.service
-	line_to_change=$(grep "^HEIGHT" config.conf)
-	sed -i "s/$line_to_change/HEIGHT=$input2/" config.conf
+	line_to_change=$(grep "^HEIGHT" BOREALIS_Cam/config.conf)
+	sed -i "s/$line_to_change/HEIGHT=$input2/" BOREALIS_Cam/config.conf
 	#sudo sed -i "0,/HEIGHT/s/HEIGHT.*/HEIGHT=${input2}/" start_stream
 	sudo systemctl start BOREALIS_CAM.service
 	echo "Changes made successfully, stream has been restarted with updated settings"
@@ -45,8 +45,8 @@ then
 	echo "Please entire new width."
 	read input2
 	sudo systemctl stop BOREALIS_CAM.service
-	line_to_change=$(grep "^WIDTH" config.conf)
-	sed -i "s/$line_to_change/WIDTH=$input2/" config.conf
+	line_to_change=$(grep "^WIDTH" BOREALIS_Cam/config.conf)
+	sed -i "s/$line_to_change/WIDTH=$input2/" BOREALIS_Cam/config.conf
 	#sudo sed -i "0,/WIDTH/s/WIDTH.*/WIDTH=${input2}/" start_stream
 	sudo systemctl start BOREALIS_CAM.service
 	echo "Changes made successfully, stream has been restarted with updated settings"
@@ -57,8 +57,8 @@ then
 	echo "Please entire new framerate."
 	read input2
 	sudo systemctl stop BOREALIS_CAM.service
-	line_to_change=$(grep "^FRAMERATE" config.conf)
-	sed -i "s/$line_to_change/FRAMERATE=$input2/" config.conf
+	line_to_change=$(grep "^FRAMERATE" BOREALIS_Cam/config.conf)
+	sed -i "s/$line_to_change/FRAMERATE=$input2/" BOREALIS_Cam/config.conf
 	#sudo sed -i "0,/FRAMERATE/s/FRAMERATE.*/FRAMERATE=${input2}/" start_stream
 	sudo systemctl start BOREALIS_CAM.service
 	echo "Changes made successfully, stream has been restarted with updated settings"
