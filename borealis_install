@@ -88,14 +88,14 @@ find_third_octet=$(echo "$ip_in" | awk -F "." '{print $3}') #Find third_octet fo
 line_with_third_octet=$(grep "^third_octet" BOREALIS_Cam/config.conf)
 sed -i "s/$line_with_third_octet/third_octet=$find_third_octet/" BOREALIS_Cam/config.conf #Saves to config
 
-line_to_change=$(grep "^hours" config.conf)
-sed -i "s/$line_to_change/hours=$hours_in/" config.conf
+line_to_change=$(grep "^hours" BOREALIS_Cam/config.conf)
+sed -i "s/$line_to_change/hours=$hours_in/" BOREALIS_Cam/config.conf
 
-line_to_change=$(grep "^minutes" config.conf)
-sed -i "s/$line_to_change/minutes=$minutes_in/" config.conf
+line_to_change=$(grep "^minutes" BOREALIS_Cam/config.conf)
+sed -i "s/$line_to_change/minutes=$minutes_in/" BOREALIS_Cam/config.conf
 
-line_to_change=$(grep "^seconds" config.conf)
-sed -i "s/$line_to_change/seconds=$seconds_in/" config.conf
+line_to_change=$(grep "^seconds" BOREALIS_Cam/config.conf)
+sed -i "s/$line_to_change/seconds=$seconds_in/" BOREALIS_Cam/config.conf
 
 install_date="#install_date=$(date)" #Takes note of the time of installation
 sed -i "2c$install_date" BOREALIS_Cam/config.conf
