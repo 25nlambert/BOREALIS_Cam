@@ -37,6 +37,43 @@ while true; do
 
 done
 
+while true; do
+    echo -e "\nPlease enter the number of hours (0-24):\n"
+    read hours_in
+
+    if [[ $hours_in =~ ^(0?|1?[0-9]|2[0-4])$ ]]; then
+        echo -e "Valid hours: $hours_in"
+        break
+    else
+        echo -e "\nInvalid input. Please enter a number between 0 and 24."
+    fi
+done
+
+while true; do
+    echo -e "\nPlease enter the number of minutes (0-59):\n"
+    read minutes_in
+
+    if [[ $minutes_in =~ ^([0-9]|[1-5][0-9])$ ]]; then
+        echo -e "Valid minutes: $minutes_in"
+        break
+    else
+        echo -e "\nInvalid input. Please enter a number between 0 and 59."
+    fi
+done
+
+while true; do
+    echo -e "\nPlease enter the number of seconds (0-59):\n"
+    read seconds_in
+
+    if [[ $seconds_in =~ ^([0-9]|[1-5][0-9])$ ]]; then
+        echo -e "Valid seconds: $seconds_in"
+        break
+    else
+        echo -e "\nInvalid input. Please enter a number between 0 and 59."
+    fi
+done
+
+
 sudo apt update     #Update operating system
 sudo apt -y upgrade
 
@@ -50,6 +87,15 @@ sed -i "s/$mac/$mac_in/" BOREALIS_Cam/config.conf #Saves to config
 find_third_octet=$(echo "$ip_in" | awk -F "." '{print $3}') #Find third_octet for subnet
 line_with_third_octet=$(grep "^third_octet" BOREALIS_Cam/config.conf)
 sed -i "s/$line_with_third_octet/third_octet=$find_third_octet/" BOREALIS_Cam/config.conf #Saves to config
+
+line_to_change=$(grep "^hours" config.conf)
+sed -i "s/$line_to_change/hours=$hours_in/" config.conf
+
+line_to_change=$(grep "^minutes" config.conf)
+sed -i "s/$line_to_change/minutes=$minutes_in/" config.conf
+
+line_to_change=$(grep "^seconds" config.conf)
+sed -i "s/$line_to_change/seconds=$seconds_in/" config.conf
 
 install_date="#install_date=$(date)" #Takes note of the time of installation
 sed -i "2c$install_date" BOREALIS_Cam/config.conf
