@@ -1,5 +1,5 @@
 [Unit]
-Description=Maine_Edition_BOREALIS_Cam_Service 
+Description=Maine_Edition_BOREALIS_Cam_2024_Service 
 After=network.target
 Type=simple
 

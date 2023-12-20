@@ -37,6 +37,20 @@ while true; do
 
 done
 
+# Run the list cameras and count the lines
+num_cameras=$(rpicam-hello --list-cameras | wc -l )
+
+if [ "$num_cameras" -gt 7 ]; then #Check if lines longer than 7
+    echo "More than one camera is connected."
+    multiple_cams=1
+else
+    echo "Only one camera is connected."
+    multiple_cams=0
+fi
+
+line_with_multicam=$(grep "^multiple_cams" BOREALIS_Cam/config.conf)
+sed -i "s/$line_with_multicam/multiple_cams=$multiple_cams/" BOREALIS_Cam/config.conf #Saves to config
+
 sudo apt update     #Update operating system
 sudo apt -y upgrade
 
