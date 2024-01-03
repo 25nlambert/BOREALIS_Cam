@@ -37,6 +37,8 @@ while true; do
 
 done
 
+git clone -b pi5 https://github.com/25nlambert/BOREALIS_Cam.git #Clone git repository of files
+
 # Run the list cameras and count the lines
 num_cameras=$(rpicam-hello --list-cameras | wc -l )
 
@@ -56,8 +58,6 @@ sudo apt purge avahi-daemon modemmanager pipwire-bin packagekit pipewire libnss-
 
 sudo apt update     #Update operating system
 sudo apt -y upgrade
-
-git clone -b pi5 https://github.com/25nlambert/BOREALIS_Cam.git #Clone git repository of files
 
 source /home/$USER/BOREALIS_Cam/config.conf #Reload config
 
