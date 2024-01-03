@@ -57,7 +57,7 @@ sudo apt purge avahi-daemon modemmanager pipwire-bin packagekit pipewire libnss-
 sudo apt update     #Update operating system
 sudo apt -y upgrade
 
-git clone https://github.com/25nlambert/BOREALIS_Cam.git #Clone git repository of files
+git clone -b pi5 https://github.com/25nlambert/BOREALIS_Cam.git #Clone git repository of files
 
 source /home/$USER/BOREALIS_Cam/config.conf #Reload config
 
