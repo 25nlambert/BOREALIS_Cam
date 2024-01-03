@@ -1,0 +1,11 @@
+[Unit]
+Description=Maine_Edition_BOREALIS_Cam0_2024_Service 
+After=network.target
+Type=simple
+
+[Service] 
+ExecStart=/home/pi/BOREALIS_Cam/cam0_start_stream
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

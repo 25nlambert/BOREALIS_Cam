@@ -46,10 +46,13 @@ if [ "$num_cameras" -gt 7 ]; then #Check if lines longer than 7
 else
     echo "Only one camera is connected."
     multiple_cams=0
+    sudo cp BOREALIS_Cam/config.txt /boot/config.txt #Replace config file with camera one
 fi
 
 line_with_multicam=$(grep "^multiple_cams" BOREALIS_Cam/config.conf)
 sed -i "s/$line_with_multicam/multiple_cams=$multiple_cams/" BOREALIS_Cam/config.conf #Saves to config
+
+sudo apt purge avahi-daemon modemmanager pipwire-bin packagekit pipewire libnss-mdns cups cups-browsed chromium-browser #Delete unnecessary processes
 
 sudo apt update     #Update operating system
 sudo apt -y upgrade
@@ -70,8 +73,6 @@ sed -i "2c$install_date" BOREALIS_Cam/config.conf
 
 source /home/$USER/BOREALIS_Cam/config.conf #Reload config
 
-sudo dpkg -i BOREALIS_Cam/libcamera0_0~git20230707+2783c8d8-1_arm64.deb #Install modified libcamera
-
 sudo systemctl enable ssh #Enable SSH
 sudo systemctl start ssh
 
@@ -79,30 +80,30 @@ sudo systemctl stop cups.service cups-browsed.service bluetooth.service hciuart.
 sudo systemctl disable cups.service cups-browsed.service bluetooth.service hciuart.service
 sudo systemctl mask bluetooth.service hciuart.service
 
-sudo apt purge avahi-daemon modemmanager pipwire-bin packagekit pipewire libnss-mdns cups cups-browsed #Delete unnecessary processes
-
 sudo apt install -y vim vim-runtime vim-common #Install Vim because we can
 
 sudo apt install -y tcpdump #So I can take a network dump
 
-sudo cp BOREALIS_Cam/config.txt /boot/config.txt #Replace config file with camera one
-
-#Replacing third octet to get on correct subnet
-sed -i "s/XX.XX.XX.XX/192.168.$third_octet.23/" ./BOREALIS_Cam/dhcpcd.conf #Modify local file
-sudo cp ./BOREALIS_Cam/dhcpcd.conf /etc/dhcpcd.conf 						#Replace dhcp file with working one for static IP
+#Set Static IP
+sudo nmcli connection add con-name staticip ifname eth0 type ethernet ip4 192.168.$third_octet.23/24
 
 sudo cp BOREALIS_Cam/.bashrc /home/$USER/.bashrc #Replace shell config
 
 #Modify service with correct directory
-sed -i "s/pi/$USER/" BOREALIS_Cam/BOREALIS_CAM.service
-sed -i "s/pi/$USER/g" BOREALIS_Cam/start_stream
+sed -i "s/pi/$USER/" BOREALIS_Cam/BOREALIS_CAM0.service
+sed -i "s/pi/$USER/g" BOREALIS_Cam/cam0_start_stream
+
+sed -i "s/pi/$USER/" BOREALIS_Cam/BOREALIS_CAM1.service
+sed -i "s/pi/$USER/g" BOREALIS_Cam/cam1_start_stream
 
 sudo cp BOREALIS_Cam/BOREALIS_CAM.service /etc/systemd/system #Copy service file
 
-sudo chmod +x /home/$USER/BOREALIS_Cam/start_stream
+sudo chmod +x /home/$USER/BOREALIS_Cam/cam0_start_stream
+sudo chmod +x /home/$USER/BOREALIS_Cam/cam1_start_stream
 sudo chmod +x /home/$USER/BOREALIS_Cam/edit_stream
 
-sudo systemctl enable BOREALIS_CAM.service
+#sudo systemctl enable BOREALIS_CAM0.service
+#sudo systemctl enable BOREALIS_CAM1.service
 
 sudo apt autoremove -y
 
