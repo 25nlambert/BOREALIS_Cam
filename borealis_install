@@ -73,6 +73,8 @@ sed -i "2c$install_date" BOREALIS_Cam/config.conf
 
 source /home/$USER/BOREALIS_Cam/config.conf #Reload config
 
+sed -i "s/$ip/192.168.$third_octet.23/" BOREALIS_Cam/config.conf #Saves to config
+
 sudo systemctl enable ssh #Enable SSH
 sudo systemctl start ssh
 
