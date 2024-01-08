@@ -6,4 +6,5 @@ source /home/$USER/BOREALIS_Cam/config.conf #Pull in config values from file
 
 sudo /usr/sbin/arp -s $ip $mac #Set ARP mac address for ground laptop
 
-/usr/bin/rpicam-vid --camera 1 --width $WIDTH --height $HEIGHT -g 15 -b $BITRATE --vflip -t 0 --framerate $FRAMERATE -n | /usr/bin/ffmpeg -r $FRAMERATE -f h264 -i - -an -vcodec copy -r $FRAMERATE -f rtp_mpegts rtp://$GSip:8555?localaddr=$ip\&ttl=2 -vcodec copy -f mpegts /home/$USER/Desktop/`date '+%Y%m%d-%H%m%S.%N'`.mpegts
+#/usr/bin/rpicam-vid --camera 1 --width $WIDTH --height $HEIGHT -g 15 -b $BITRATE --vflip -t 0 --framerate $FRAMERATE -n | /usr/bin/ffmpeg -r $FRAMERATE -f h264 -i - -an -vcodec copy -r $FRAMERATE -f rtp_mpegts rtp://$GSip:8555?localaddr=$ip\&ttl=2 -vcodec copy -f mpegts /home/$USER/Desktop/`date '+%Y%m%d-%H%m%S.%N'`.mpegts
+/usr/bin/rpicam-vid --camera 1 --width $WIDTH --height $HEIGHT -t 0 -n --framerate 30 --denoise off --bitrate 1200000 --libav-format mpegts -o "-" | ffmpeg -r 30 -f mpegts -i - -fflags +genpts -an -vcodec copy -f rtp_mpegts rtp://$GSip:8555?localaddr=$ip\&ttl=2 -vcodec copy -f mpegts /home/$USER/Desktop/cam1`date '+%Y%m%d-%H%m%S.%N'`.mpegts
