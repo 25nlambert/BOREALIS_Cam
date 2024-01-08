@@ -61,8 +61,8 @@ sudo apt -y upgrade
 
 source /home/$USER/BOREALIS_Cam/config.conf #Reload config
 
-sed -i "s/$ip/$ip_in/" BOREALIS_Cam/config.conf #Saves to config
-sed -i "s/$mac/$mac_in/" BOREALIS_Cam/config.conf #Saves to config
+sed -i "s/$GSip/$ip_in/" BOREALIS_Cam/config.conf #Saves to config
+sed -i "s/$GSmac/$mac_in/" BOREALIS_Cam/config.conf #Saves to config
 
 find_third_octet=$(echo "$ip_in" | awk -F "." '{print $3}') #Find third_octet for subnet
 line_with_third_octet=$(grep "^third_octet" BOREALIS_Cam/config.conf)

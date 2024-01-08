@@ -12,7 +12,7 @@ Raspberry Pi 5 8GB
 
 Install the latest version of Raspberry Pi OS (64 Bit) to a micro SD card using the [Raspberry Pi Imager](https://www.raspberrypi.com/software/). [More Details](https://www.raspberrypi.com/documentation/computers/getting-started.html#install-using-imager)
 
-Connect a USB keyboard, USB mouse, and HDMI monitor to the Pi
+Connect a USB keyboard, USB mouse, and HDMI monitor to the Pi.
 
 Turn on the Pi and proceed through the initial setup steps until reaching the Desktop. 
 
