@@ -100,7 +100,7 @@ sed -i "s/pi/$USER/" /home/$USER/BOREALIS_Cam/BOREALIS_CAM0.service
 sed -i "s/pi/$USER/" /home/$USER/BOREALIS_Cam/BOREALIS_CAM1.service
 
 sed -i "s/\/pi\//\/$USER\//" /home/$USER/BOREALIS_Cam/cam0_start_stream
-sed -i "s/\/pi\//\/$USER\//" /home/$USER/BOREALIS_Cam/cam0_start_stream
+sed -i "s/\/pi\//\/$USER\//" /home/$USER/BOREALIS_Cam/cam1_start_stream
 
 sudo cp BOREALIS_Cam/BOREALIS_CAM0.service /etc/systemd/system #Copy service file
 sudo cp BOREALIS_Cam/BOREALIS_CAM1.service /etc/systemd/system #Copy service file
