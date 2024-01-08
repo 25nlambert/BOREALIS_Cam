@@ -96,8 +96,8 @@ sudo nmcli connection add con-name staticip ifname eth0 type ethernet ip4 192.16
 sudo cp BOREALIS_Cam/.bashrc /home/$USER/.bashrc #Replace shell config
 
 #Modify service with correct directory
-sed -i "s/pi/$USER/" BOREALIS_Cam/BOREALIS_CAM0.service
-sed -i "s/pi/$USER/" BOREALIS_Cam/BOREALIS_CAM1.service
+sed -i "s/pi/$USER/" /home/$USER/BOREALIS_Cam/BOREALIS_CAM0.service
+sed -i "s/pi/$USER/" /home/$USER/BOREALIS_Cam/BOREALIS_CAM1.service
 
 sudo cp BOREALIS_Cam/BOREALIS_CAM0.service /etc/systemd/system #Copy service file
 sudo cp BOREALIS_Cam/BOREALIS_CAM1.service /etc/systemd/system #Copy service file
