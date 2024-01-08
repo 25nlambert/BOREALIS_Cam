@@ -105,8 +105,8 @@ sudo chmod +x /home/$USER/BOREALIS_Cam/cam0_start_stream
 sudo chmod +x /home/$USER/BOREALIS_Cam/cam1_start_stream
 sudo chmod +x /home/$USER/BOREALIS_Cam/edit_stream
 
-#sudo systemctl enable BOREALIS_CAM0.service
-#sudo systemctl enable BOREALIS_CAM1.service
+sudo systemctl enable BOREALIS_CAM0.service
+sudo systemctl enable BOREALIS_CAM1.service
 
 sudo apt autoremove -y
 
