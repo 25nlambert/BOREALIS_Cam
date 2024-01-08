@@ -2,7 +2,7 @@
 
 sleep 60
 
-source /home/pi/BOREALIS_Cam/config.conf #Pull in config values from file
+source /home/$USER/BOREALIS_Cam/config.conf #Pull in config values from file
 
 sudo /usr/sbin/arp -s $GSip $GSmac #Set ARP mac address for ground laptop
 
