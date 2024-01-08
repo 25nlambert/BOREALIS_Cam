@@ -5,8 +5,12 @@ GREEN='\033[0;32m'
 NC='\033[0m'
 
 sudo systemctl stop BOREALIS_CAM.service            #Remove old installation of BOREALIS_Cam
+sudo systemctl enable BOREALIS_CAM0.service
+sudo systemctl enable BOREALIS_CAM1.service
 sudo rm -rf /home/$USER/BOREALIS_Cam
 sudo rm /etc/systemd/system/BOREALIS_CAM.service
+sudo rm /etc/systemd/system/BOREALIS_CAM0.service
+sudo rm /etc/systemd/system/BOREALIS_CAM1.service
 
 #Prompts for and checks for proper MAC address
 while true; do
