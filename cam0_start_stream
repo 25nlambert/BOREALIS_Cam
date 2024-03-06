@@ -6,5 +6,6 @@ source /home/pi/BOREALIS_Cam/config.conf #Pull in config values from file
 
 sudo /usr/sbin/arp -s $GSip $GSmac #Set ARP mac address for ground laptop
 
-#/usr/bin/rpicam-vid --camera 0 --width $WIDTH --height $HEIGHT -g 15 -b $BITRATE --vflip -t 0 --framerate $FRAMERATE -n | /usr/bin/ffmpeg -r $FRAMERATE -f h264 -i - -an -vcodec copy -r $FRAMERATE -f rtp_mpegts rtp://$ip:8554?localaddr=$ip\&ttl=2 -vcodec copy -f mpegts /home/pi/Desktop/`date '+%Y%m%d-%H%m%S.%N'`.mpegts
-/usr/bin/rpicam-vid --camera 0 --width $WIDTH --height $HEIGHT -t 0 -n --framerate $FRAMERATE --denoise off --bitrate $BITRATE --libav-format mpegts -o "-" | ffmpeg -r $FRAMERATE -f mpegts -i - -fflags +genpts -an -vcodec copy -f rtp_mpegts rtp://$GSip:8554?localaddr=$ip\&ttl=2 -vcodec copy -f mpegts /home/pi/Desktop/cam0`date '+%Y%m%d-%H%m%S.%N'`.mpegts
+#/usr/bin/rpicam-vid --camera 0 --width $WIDTH --height $HEIGHT -t 0 -n --framerate $FRAMERATE --denoise off --bitrate $BITRATE --libav-format mpegts -o "-" | ffmpeg -r $FRAMERATE -f mpegts -i - -fflags +genpts -an -vcodec copy -f rtp_mpegts rtp://$GSip:8554?localaddr=$ip\&ttl=2 -vcodec copy -f mpegts /home/pi/Desktop/cam0`date '+%Y%m%d-%H%m%S.%N'`.mpegts
+
+/usr/bin/rpicam-vid --camera 0 --width $WIDTH --height $HEIGHT -t 0 -n --framerate $FRAMERATE --denoise off --bitrate $BITRATE --libav-format mpegts -o "/home/pi/Desktop/CAM0video_%Y-%m-%d_%H-%M-%S.ts" --segment-time 300 --segment-start 0 --segment-wrap & ffmpeg -re -i "/home/pi/Desktop/CAM0video_%Y-%m-%d_%H-%M-%S.ts" -c copy -an -f flv "rtmp://your-streaming-server/live/stream-key"
