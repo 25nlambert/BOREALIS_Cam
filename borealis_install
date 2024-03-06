@@ -41,7 +41,7 @@ while true; do
 
 done
 
-git clone -b pi5 https://github.com/25nlambert/BOREALIS_Cam.git #Clone git repository of files
+git clone -b pi5dev https://github.com/25nlambert/BOREALIS_Cam.git #Clone git repository of files
 
 # Run the list cameras and count the lines
 num_cameras=$(rpicam-hello --list-cameras | wc -l )
